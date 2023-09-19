@@ -4,7 +4,7 @@ interface Post {
     id: number,
     title: string,
     content: string,
-    author: string,
+    authorId: string,
 }
 
 var totalPosts = 0
@@ -25,16 +25,21 @@ export default class PostsController {
         return posts
     }
 
-    public async store({ request }: HttpContextContract) {
-        const title = request.input('title')
-        const content = request.input('content')
-        const author = request.input('author')
+    public async store({ request, response }: HttpContextContract) {
+        const title = request.input('title', undefined)
+        const content = request.input('content', undefined)
+        const authorId = request.input('authorId', undefined)
+
+        if(!title || !content || !authorId) {
+            response.status(400)
+            return response
+        }
 
         const post: Post = {
             id: totalPosts,
             title,
             content,
-            author
+            authorId
         }
 
         totalPosts += 1
