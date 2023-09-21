@@ -1,28 +1,19 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-interface Post {
-    id: number,
-    title: string,
-    content: string,
-    authorId: string,
-}
-
-var totalPosts = 0
-
-const posts: Post[] = []
+import Post from 'App/Models/Post'
 
 export default class PostsController {
     public async index({}: HttpContextContract) {
-        return posts
+        return null
     }
 
     public async destroy({}: HttpContextContract) {
-        return posts
+        return null
     }
 
 
     public async update({}: HttpContextContract) {
-        return posts
+        return null
     }
 
     public async store({ request, response }: HttpContextContract) {
@@ -35,30 +26,16 @@ export default class PostsController {
             return response
         }
 
-        const post: Post = {
-            id: totalPosts,
-            title,
+        const post = await Post.create({
             content,
+            title,
             authorId
-        }
-
-        totalPosts += 1
-
-        posts.push(post)
+        })
 
         return post
     }
 
-    public async show({ request, response }: HttpContextContract) {
-        const id = request.param('id')
-
-        const post = posts[id]
-
-        if(!post) {
-            response.status(404)
-            return "404"
-        }
-
-        return posts[id]
+    public async show({}: HttpContextContract) {
+        return null
     }
 }
