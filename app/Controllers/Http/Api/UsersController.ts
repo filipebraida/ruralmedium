@@ -1,10 +1,12 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import User from 'App/Models/User'
+import UserService from 'App/Services/UserService'
 
 export default class UsersController {
-    public async index({}: HttpContextContract) {
+    public async index({ }: HttpContextContract) {
         const users = await User.all()
+
         return users
     }
 
@@ -39,10 +41,8 @@ export default class UsersController {
             return response
         }
 
-        const user = await User.create({
-            password,
-            email,
-        })
+        const userService = new UserService()
+        const user = await userService.create(email, password)
 
         return user
     }

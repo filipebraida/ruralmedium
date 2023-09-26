@@ -20,14 +20,27 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/posts', 'PostsController.index')
-Route.get('/posts/:id', 'PostsController.show') 
-Route.delete('/posts/:id', 'PostsController.destroy')
-Route.patch('/posts/:id', 'PostsController.update')
-Route.post('/posts', 'PostsController.store').as('posts.store')
+Route.group(() => {
+    Route.group(() => {
+        Route.get('/', 'PostsController.index')
+        Route.get('/id', 'PostsController.show') 
+        Route.delete('/:id', 'PostsController.destroy')
+        Route.patch('/:id', 'PostsController.update')
+        Route.post('/', 'PostsController.store').as('posts.store')
+    }).prefix('/posts')
 
-Route.get('/users', 'UsersController.index')
-Route.get('/users/:id', 'UsersController.show') 
-Route.delete('/users/:id', 'UsersController.destroy')
-Route.patch('/users/:id', 'UsersController.update')
-Route.post('/users', 'UsersController.store').as('users.store')
+    Route.group(() => {
+        Route.get('/', 'UsersController.index')
+        Route.get('/:id', 'UsersController.show') 
+        Route.delete('/:id', 'UsersController.destroy')
+        Route.patch('/:id', 'UsersController.update')
+        Route.post('/', 'UsersController.store').as('users.store')
+    }).prefix('/users')
+}).prefix('/api').namespace('App/Controllers/Http/Api')
+  
+Route.group(() => {
+    Route.group(() => {
+        Route.get('/', 'UsersController.create')
+        Route.post('/', 'UsersController.store')
+    }).prefix('/users')
+}).namespace('App/Controllers/Http/Web')
