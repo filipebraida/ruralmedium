@@ -16,7 +16,7 @@ export default class Post extends BaseModel {
   public userId: number
 
   @belongsTo(() => User)
-  public user: BelongsTo<typeof User> 
+  public user: BelongsTo<typeof User>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

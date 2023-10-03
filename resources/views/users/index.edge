@@ -1,51 +1,51 @@
 <html>
+
 <head>
-    <title>Rural Medium</title>
+  <title>Rural Medium</title>
 </head>
+
 <body>
-    <p>
-        Usuários
-    </p>
+  <p>
+    Usuários
+  </p>
 
-    <div>
-        <a href="{{ route('users.create') }}">Criar</a>
-    </div>
+  <div>
+    <a href="{{ route('users.create') }}">Criar</a>
+  </div>
 
-    <table>
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-            @each(user in users)
-                <tr>
-                    <td>
-                        <a href="{{ route('users.show', { id: user.id }) }}">
-                            {{ user.email }}
-                        </a>
-                    </td>
-                    <td>
-                        <span>
-                            <a href="{{ route('users.show', { id: user.id }) }}">
-                                show
-                            </a>
-                        </span>
-                        <span>
-                            <a href="{{ route('users.update', { id: user.id }) }}">edit</a>
-                        </span>
-                        <span>
-                            delete
-                        </span>
-                    </td>
-                </tr>
-            @end
-          </tr>
-        </tbody>
-    </table>
-
-    
-
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(user in users)
+      <tr>
+        <td>
+          <a href="{{ route('users.show', { id: user.id }) }}">
+            {{ user.email }}
+          </a>
+        </td>
+        <td>
+          <span>
+            <a href="{{ route('users.show', { id: user.id }) }}">
+              show
+            </a>
+          </span>
+          <span>
+            <a href="{{ route('users.update', { id: user.id }) }}">edit</a>
+          </span>
+          <span>
+            delete
+          </span>
+        </td>
+      </tr>
+      @end
+      </tr>
+    </tbody>
+  </table>
 </body>
+
 </html>

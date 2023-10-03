@@ -10,7 +10,7 @@ Sistema de gerenciamento de vídeos que está sendo desenvolvida com a turma de 
 mkdir tmp
 ```
 
-2 - Criar o ```.env```
+2 - Criar o `.env`
 
 ```console
 cp .env.example .env
