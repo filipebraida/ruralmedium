@@ -34,13 +34,17 @@ Route.group(() => {
         Route.get('/:id', 'UsersController.show') 
         Route.delete('/:id', 'UsersController.destroy')
         Route.patch('/:id', 'UsersController.update')
-        Route.post('/', 'UsersController.store').as('users.store')
+        Route.post('/', 'UsersController.store')
     }).prefix('/users')
 }).prefix('/api').namespace('App/Controllers/Http/Api')
   
 Route.group(() => {
     Route.group(() => {
-        Route.get('/', 'UsersController.create')
-        Route.post('/', 'UsersController.store')
+        Route.get('/', 'UsersController.index').as('users.index')
+        Route.get('/new', 'UsersController.create').as('users.create')
+        Route.post('/', 'UsersController.store').as('users.store')
+        Route.get('/:id/update', 'UsersController.update').as('users.update')
+        Route.patch('/:id', 'UsersController.patch').as('users.patch')
+        Route.get('/:id', 'UsersController.show').as('users.show')
     }).prefix('/users')
 }).namespace('App/Controllers/Http/Web')
