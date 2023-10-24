@@ -19,34 +19,52 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
+Route.get('/', async ({ view }: HttpContextContract) => {
+  return view.render('home/show')
+}).as('home.show')
+
+// Route.group(() => {
+//   Route.group(() => {
+//     Route.get('/', 'PostsController.index')
+//     Route.get('/id', 'PostsController.show')
+//     Route.delete('/:id', 'PostsController.destroy')
+//     Route.patch('/:id', 'PostsController.update')
+//     Route.post('/', 'PostsController.store').as('posts.store')
+//   }).prefix('/posts')
+
+//   Route.group(() => {
+//     Route.get('/', 'UsersController.index')
+//     Route.get('/:id', 'UsersController.show')
+//     Route.delete('/:id', 'UsersController.destroy')
+//     Route.patch('/:id', 'UsersController.update')
+//     Route.post('/', 'UsersController.store')
+//   }).prefix('/users')
+// })
+//   .prefix('/api')
+//   .namespace('App/Controllers/Http/Api')
 
 Route.group(() => {
   Route.group(() => {
-    Route.get('/', 'PostsController.index')
-    Route.get('/id', 'PostsController.show')
-    Route.delete('/:id', 'PostsController.destroy')
-    Route.patch('/:id', 'PostsController.update')
-    Route.post('/', 'PostsController.store').as('posts.store')
-  }).prefix('/posts')
+    Route.get('/', 'UsersController.index').as('index')
+    Route.get('/new', 'UsersController.create').as('create')
+    Route.post('/', 'UsersController.store').as('store')
+    Route.get('/:id/update', 'UsersController.update').as('update')
+    Route.patch('/:id', 'UsersController.patch').as('patch')
+    Route.get('/:id', 'UsersController.show').as('show')
+  })
+    .prefix('/users')
+    .as('users')
 
   Route.group(() => {
-    Route.get('/', 'UsersController.index')
-    Route.get('/:id', 'UsersController.show')
-    Route.delete('/:id', 'UsersController.destroy')
-    Route.patch('/:id', 'UsersController.update')
-    Route.post('/', 'UsersController.store')
-  }).prefix('/users')
-})
-  .prefix('/api')
-  .namespace('App/Controllers/Http/Api')
-
-Route.group(() => {
-  Route.group(() => {
-    Route.get('/', 'UsersController.index').as('users.index')
-    Route.get('/new', 'UsersController.create').as('users.create')
-    Route.post('/', 'UsersController.store').as('users.store')
-    Route.get('/:id/update', 'UsersController.update').as('users.update')
-    Route.patch('/:id', 'UsersController.patch').as('users.patch')
-    Route.get('/:id', 'UsersController.show').as('users.show')
-  }).prefix('/users')
+    Route.get('/', 'PostsController.index').as('index')
+    Route.get('/new', 'PostsController.create').as('create')
+    Route.post('/', 'PostsController.store').as('store')
+    Route.get('/:id/update', 'PostsController.update').as('update')
+    Route.patch('/:id', 'PostsController.patch').as('patch')
+    Route.get('/:id', 'PostsController.show').as('show')
+  })
+    .prefix('/posts')
+    .as('posts')
 }).namespace('App/Controllers/Http/Web')

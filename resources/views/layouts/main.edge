@@ -5,26 +5,20 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/app.css') }}">
 </head>
 
-<body>
-  <nav>
-    <div>
-      Rural
+<body class="flex flex-col divide-y divide-heather-200">
+  @include('layouts/partials/header')
+
+  <div class="flex">
+    <div class="flex flex-col divide-y divide-heather-200 w-full gap-10">
+
+      <div class="flex justify-center w-full">
+        @!section('content')
+      </div>
+
+      @include('layouts/partials/footer')
     </div>
+  </div>
 
-    <div>
-      <button style="margin: 20px;" class="escreva">
-        Escreva
-      </button>
-      <button>
-        Comece Aqui
-      </button>
-    </div>
-  </nav>
-
-  @!section('content')
-
-  <footer>
-  </footer>
 </body>
 
 </html>
