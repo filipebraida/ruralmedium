@@ -67,4 +67,6 @@ Route.group(() => {
   })
     .prefix('/posts')
     .as('posts')
+
+  Route.get('/file/:id', 'FilesController.show').as('files.show')
 }).namespace('App/Controllers/Http/Web')

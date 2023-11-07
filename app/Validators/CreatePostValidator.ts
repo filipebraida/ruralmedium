@@ -37,6 +37,10 @@ export default class CreatePostValidator extends BaseValidator {
       rules.maxLength(200),
       rules.trim(),
     ]),
+    cover: schema.file({
+      size: '2mb',
+      extnames: ['jpg', 'gif', 'png'],
+    }),
   })
 
   /**

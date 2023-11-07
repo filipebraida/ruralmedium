@@ -12,6 +12,8 @@ export default class PostsController {
   public async store({ request, response }: HttpContextContract) {
     const payload = await request.validate(CreatePostValidator)
 
+    console.log(payload.cover)
+
     //TODO: Pegar o usuario logado
     const user = await User.findOrFail(1)
 
