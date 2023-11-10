@@ -1,10 +1,14 @@
 import User from 'App/Models/User'
 import Post from 'App/Models/Post'
-import Application from '@ioc:Adonis/Core/Application'
-import FileService from './FileService'
+
+import FileService from 'App/Services/FileService'
 
 export default class UsersController {
-  constructor() {}
+  private fileService: FileService
+
+  constructor() {
+    this.fileService = new FileService()
+  }
 
   public async create(
     user: User,
@@ -19,8 +23,7 @@ export default class UsersController {
     post.content = data.content
     post.userId = user.id
 
-    const fileService = new FileService()
-    const file = await fileService.create(data.cover)
+    const file = await this.fileService.create(data.cover)
 
     post.coverId = file.id
 
