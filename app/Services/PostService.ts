@@ -6,11 +6,14 @@ import FileService from './FileService'
 export default class UsersController {
   constructor() {}
 
-  public async create(user: User, data: {
-    title: string,
-    content: string,
-    cover: any,
-  }) {
+  public async create(
+    user: User,
+    data: {
+      title: string
+      content: string
+      cover: any
+    }
+  ) {
     const post = new Post()
     post.title = data.title
     post.content = data.content
