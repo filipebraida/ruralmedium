@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import User from 'App/Models/User'
+
 import UserService from 'App/Services/UserService'
 
 export default class UsersController {

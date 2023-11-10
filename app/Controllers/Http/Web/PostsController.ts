@@ -1,7 +1,10 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
 import User from 'App/Models/User'
 import Post from 'App/Models/Post'
+
 import PostService from 'App/Services/PostService'
+
 import CreatePostValidator from 'App/Validators/CreatePostValidator'
 
 export default class PostsController {
