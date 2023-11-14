@@ -29,7 +29,9 @@ export default class PostsController {
 
     await post.load('user')
 
-    return view.render('posts/show', { post: post })
+    const user = await User.findOrFail(1)
+
+    return view.render('posts/show', { user: user, post: post })
   }
 
   public async update({}: HttpContextContract) {}
@@ -40,7 +42,13 @@ export default class PostsController {
     return view.render('posts/index')
   }
 
-  public async like({}: HttpContextContract) {
-    console.log('chamei')
+  public async like({ params }: HttpContextContract) {
+    const post = await Post.findOrFail(params.id)
+
+    const user = await User.findOrFail(1)
+    const service = new PostService()
+    const liked = await service.like(user, post)
+
+    return { id: post.id, liked: liked }
   }
 }

@@ -52,6 +52,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-adonis": "^2.1.1",
     "eslint-plugin-prettier": "^5.0.0",
+    "file-loader": "^6.2.0",
     "pino-pretty": "^10.2.0",
     "postcss": "^8.4.31",
     "postcss-loader": "^7.3.3",
