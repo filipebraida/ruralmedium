@@ -39,4 +39,8 @@ export default class PostsController {
   public async index({ view }: HttpContextContract) {
     return view.render('posts/index')
   }
+
+  public async like({}: HttpContextContract) {
+    console.log('chamei')
+  }
 }

@@ -58,6 +58,7 @@ Route.group(() => {
     .as('users')
 
   Route.group(() => {
+    Route.get('/like/:id', 'PostsController.like').as('like')
     Route.get('/', 'PostsController.index').as('index')
     Route.get('/new', 'PostsController.create').as('create')
     Route.post('/', 'PostsController.store').as('store')
