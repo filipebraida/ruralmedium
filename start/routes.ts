@@ -58,16 +58,26 @@ Route.group(() => {
     .as('users')
 
   Route.group(() => {
-    Route.get('/like/:id', 'PostsController.like').as('like')
+    Route.group(() => {
+      Route.get('/like/:id', 'PostsController.like').as('like')
+      Route.get('/new', 'PostsController.create').as('create')
+      Route.post('/', 'PostsController.store').as('store')
+      Route.patch('/:id', 'PostsController.patch').as('patch')
+    }).middleware('auth')
+
     Route.get('/', 'PostsController.index').as('index')
-    Route.get('/new', 'PostsController.create').as('create')
-    Route.post('/', 'PostsController.store').as('store')
     Route.get('/:id/update', 'PostsController.update').as('update')
-    Route.patch('/:id', 'PostsController.patch').as('patch')
     Route.get('/:id', 'PostsController.show').as('show')
   })
     .prefix('/posts')
     .as('posts')
 
   Route.get('/file/:id', 'FilesController.show').as('files.show')
+
+  Route.group(() => {
+    Route.get('/login', 'AuthController.create').as('create')
+    Route.post('/login', 'AuthController.store').as('store')
+    Route.delete('/logout', 'AuthController.destroy').as('destroy')
+  })
+    .as('auth')
 }).namespace('App/Controllers/Http/Web')

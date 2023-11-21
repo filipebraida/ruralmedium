@@ -12,11 +12,30 @@
     </a>
   </div>
   <div class="flex items-center space-x-4 leading-5 sm:space-x-6">
-    <a href="{{ route('posts.create') }}" class="hidden font-medium text-gray-900 sm:block">
-      Escreva
-    </a>
+    @if(auth.user)
+      <a href="{{ route('posts.create') }}" class="hidden font-medium text-gray-900 sm:block">
+        Escreva
+      </a>
+    @end
     <a href="{{ route('posts.index') }}" class="hidden font-medium text-gray-900 sm:block">
       Comece Aqui
     </a>
+
+    @if(auth.user)
+      <a href="{{ route('posts.index') }}" class="hidden font-medium text-gray-900 sm:block">
+        {{ auth.user.email }}
+      </a>
+      <form action="{{ route('auth.destroy', { qs: { _method: 'DELETE' }}) }}" method="POST" class="hidden font-medium text-gray-900 sm:block">
+        <button type="submit">
+          Logout
+        </button>
+      </form>
+    @else
+      <a href="{{ route('auth.create') }}" class="hidden font-medium text-gray-900 sm:block">
+        Login
+      </a>
+    @end
+
+
   </div>
 </header>

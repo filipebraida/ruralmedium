@@ -2,9 +2,9 @@
 
 @section('content')
   <p>
-    Crie o seu usuário
+    Faça o login
   </p>
-  <form action="/users" method="POST">
+  <form action="{{ route('auth.store') }}" method="POST">
     <div>
       @!form.legend({ name: 'Email'})
       @!form.input({ name: 'email', type: 'email' })
@@ -14,8 +14,15 @@
       @!form.input({ name: 'password', type: 'password' })
     </div>
     <div>
+      @if(flashMessages.has('errors.login'))
+        <p class="text-sm text-primary-500">
+          {{ flashMessages.get('errors.login') }}
+        </p>
+      @end
+    </div>
+    <div>
       @form.button()
-        Criar
+        Logar
       @end
     </div>
   </form>
