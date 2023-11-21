@@ -5,20 +5,18 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/app.css') }}">
 </head>
 
-<body class="flex flex-col divide-y divide-primary-200">
-  @include('layouts/partials/header')
+<body class="bg-white text-black antialiased">
+  <section class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+    <div class="flex h-screen flex-col justify-between font-sans">
+      @include('layouts/partials/header')
 
-  <div class="flex">
-    <div class="flex flex-col divide-y divide-primary-200 w-full gap-10">
-
-      <div class="flex justify-center w-full">
+      <main class="mb-auto">
         @!section('content')
-      </div>
+      </main>
 
       @include('layouts/partials/footer')
     </div>
-  </div>
-
+  </section>
 </body>
 
 </html>
